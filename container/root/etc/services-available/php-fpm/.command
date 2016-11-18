@@ -1,3 +1,5 @@
-#!/bin/bash
+#!/usr/bin/execlineb -P
 
-exec php-fpm -F -O 2>&1 | sed -u 's,.*: \"\(.*\)$,\1,'| sed -u 's,\"$,,'
+
+pipeline { php-fpm -F -O } pipeline { sed -u 's,.*: \"\(.*\)$,\1,' } { sed -u 's,\"$,,' }
+# exec php-fpm -F -O 2>&1 sed -u 's,.*: \"\(.*\)$,\1,'| sed -u 's,\"$,,'
